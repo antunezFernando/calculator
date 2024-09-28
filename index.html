@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./script.js"></script>
+    <link href="https://fonts.cdnfonts.com/css/calculator" rel="stylesheet">
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <header>
@@ -13,34 +14,37 @@
     </header>
     <div id="main-container">
         <div id="frame">
-            <div id="screen"></div>
+            <div id="screen">
+                <span id="operation-input">&nbsp</span>
+                <span id="number-input">0</span>
+            </div>
             <div class="btn-row">
-                <div class="button" id="on-off">&#9211</div>
-                <div class="button" id="?">?</div>
+                <div class="button" id="on-off">ON</div>
                 <div class="button" id="clear">c</div>
+                <div class="button" id="?">?</div>
                 <div class="button" id="backspace">&lt</div>
             </div>
             <div class="btn-row">
-                <div class="button" id="7">7</div>
-                <div class="button" id="8">8</div>
-                <div class="button" id="9">9</div>
+                <div class="button" id="seven">7</div>
+                <div class="button" id="eight">8</div>
+                <div class="button" id="nine">9</div>
                 <div class="button" id="divide">÷</div>
             </div>
             <div class="btn-row">
-                <div class="button" id="4">4</div>
-                <div class="button" id="5">5</div>
-                <div class="button" id="6">6</div>
-                <div class="button" id="multiply">X</div>
+                <div class="button" id="four">4</div>
+                <div class="button" id="five">5</div>
+                <div class="button" id="six">6</div>
+                <div class="button" id="multiply">×</div>
             </div>
             <div class="btn-row">
-                <div class="button" id="1">1</div>
-                <div class="button" id="2">2</div>
-                <div class="button" id="3">3</div>
-                <div class="button" id="substract">-</div>
+                <div class="button" id="one">1</div>
+                <div class="button" id="two">2</div>
+                <div class="button" id="three">3</div>
+                <div class="button" id="subtract">-</div>
             </div>
             <div class="btn-row">
-                <div class="button" id="0">0</div>
-                <div class="button" id="comma">,</div>
+                <div class="button" id="zero">0</div>
+                <div class="button" id="comma">.</div>
                 <div class="button" id="equal">=</div>
                 <div class="button" id="add">+</div>
             </div>

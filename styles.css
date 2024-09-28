@@ -1,3 +1,42 @@
 * {
     box-sizing: border-box;
 }
+
+#frame {
+    width: 600px;
+    height: 700px;
+    border: 2px solid black;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    user-select: none;
+}
+
+#screen {
+    border: 1px solid black;  
+    flex: 1.2 1 0;
+}
+
+.btn-row {
+    border: 1px solid black;
+    flex: 1 1 0;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+
+.button {
+    border: 1px solid black;
+    flex: 1 1 0;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 40px;
+}
+
+#on-off {
+    padding-top: 2.5%;
+}

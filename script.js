@@ -15,9 +15,18 @@ let eight = document.querySelector("#eight");
 let nine = document.querySelector("#nine");
 let comma = document.querySelector("#comma");
 
+let first = null;
+let second = null;
+
 startListeners()
 
-
+function operate() {
+    let result;
+    if(operation.textContent === "+") {
+        result = first + second;
+    }
+    numbers.textContent = result.toString();
+}
 
 function startListeners() {
     startNumberListeners();
@@ -104,15 +113,32 @@ function startOperationListeners() {
         switch(e.target.id) {
             case "add":
                 operation.textContent = "+";
+                if(first === null) {
+                    first = +numbers.textContent;
+                } else {
+                    second = +numbers.textContent;
+                }
+                numbers.textContent = "0";
                 break;
             case "subtract":
                 operation.textContent = "-";
+                first = +numbers.textContent;
                 break;
             case "multiply":
                 operation.textContent = "×";
+                first = +numbers.textContent;
                 break;
             case "divide":
                 operation.textContent = "÷";
+                first = +numbers.textContent;
+                break;
+            case "equal":
+                if(first === null) {
+                    first = +numbers.textContent;
+                } else {
+                    second = +numbers.textContent;
+                }
+                operate()
                 break;
         }
     });

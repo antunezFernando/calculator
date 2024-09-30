@@ -17,15 +17,30 @@ let comma = document.querySelector("#comma");
 
 let first = null;
 let second = null;
+let resultFlag = false;
 
 startListeners()
 
 function operate() {
     let result;
-    if(operation.textContent === "+") {
-        result = first + second;
+    switch(operation.textContent) {
+        case "+":
+            result = first + second;
+            break;
+        case "-":
+            result = first - second;
+            break;
+        case "×":
+            result = first * second;
+            break;
+        case "÷":
+            result = first / second;
+            break;
     }
     numbers.textContent = result.toString();
+    first = result;
+    second = null;
+    resultFlag = true;
 }
 
 function startListeners() {
@@ -35,6 +50,11 @@ function startListeners() {
 
 function startNumberListeners() {
     frame.addEventListener("click", (e) => {
+        if(resultFlag) {
+            first = null;
+            numbers.textContent = "0";
+            resultFlag = false;
+        }
         switch(e.target.id) {
             case "zero":
                 if(numbers.textContent !== "0") {
@@ -122,15 +142,30 @@ function startOperationListeners() {
                 break;
             case "subtract":
                 operation.textContent = "-";
-                first = +numbers.textContent;
+                if(first === null) {
+                    first = +numbers.textContent;
+                } else {
+                    second = +numbers.textContent;
+                }
+                numbers.textContent = "0";
                 break;
             case "multiply":
                 operation.textContent = "×";
-                first = +numbers.textContent;
+                if(first === null) {
+                    first = +numbers.textContent;
+                } else {
+                    second = +numbers.textContent;
+                }
+                numbers.textContent = "0";
                 break;
             case "divide":
                 operation.textContent = "÷";
-                first = +numbers.textContent;
+                if(first === null) {
+                    first = +numbers.textContent;
+                } else {
+                    second = +numbers.textContent;
+                }
+                numbers.textContent = "0";
                 break;
             case "equal":
                 if(first === null) {
@@ -138,7 +173,8 @@ function startOperationListeners() {
                 } else {
                     second = +numbers.textContent;
                 }
-                operate()
+                operate();
+                operation.innerHTML = "&nbsp"
                 break;
         }
     });

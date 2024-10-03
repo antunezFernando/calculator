@@ -21,6 +21,7 @@ let first = null;
 let second = null;
 
 let waitingForResult = false;
+let equalJustPressed = false;
 
 startListeners();
 
@@ -48,6 +49,7 @@ function operate() {
         default:
             result = first;
     }
+    // numbers.textContent = result.toString().length < 14 ? result.toString() : result.toExponential().toString();
     numbers.textContent = result.toString();
     first = result;
     second = null;
@@ -78,6 +80,7 @@ function startNumberListeners() {
             case "one":
                 if(numbers.textContent === "0" || waitingForResult) {
                     numbers.textContent = "1";
+                    waitingForResult = false;
                 } else {
                     numbers.textContent += "1";
                 }
@@ -166,8 +169,13 @@ function startOperationListeners() {
         switch(e.target.id) {
             case "add":
                 if(waitingForResult) {
-                    operation.textContent = "+";
-                    break;
+                    if(equalJustPressed) {
+                        first = +numbers.textContent;
+                        equalJustPressed = false;
+                    } else {
+                        operation.textContent = "+";
+                        break;
+                    }
                 }
                 if(first === null) {
                     first = +numbers.textContent;
@@ -182,8 +190,13 @@ function startOperationListeners() {
                 break;
             case "subtract":
                 if(waitingForResult) {
-                    operation.textContent = "-";
-                    break;
+                    if(equalJustPressed) {
+                        first = +numbers.textContent;
+                        equalJustPressed = false;
+                    } else {
+                        operation.textContent = "-";
+                        break;
+                    }
                 }
                 if(first === null) {
                     first = +numbers.textContent;
@@ -198,8 +211,13 @@ function startOperationListeners() {
                 break;
             case "multiply":
                 if(waitingForResult) {
-                    operation.textContent = "×";
-                    break;
+                    if(equalJustPressed) {
+                        first = +numbers.textContent;
+                        equalJustPressed = false;
+                    } else {
+                        operation.textContent = "×";
+                        break;
+                    }
                 }
                 if(first === null) {
                     first = +numbers.textContent;
@@ -214,8 +232,13 @@ function startOperationListeners() {
                 break;
             case "divide":
                 if(waitingForResult) {
-                    operation.textContent = "÷";
-                    break;
+                    if(equalJustPressed) {
+                        first = +numbers.textContent;
+                        equalJustPressed = false;
+                    } else {
+                        operation.textContent = "÷";
+                        break;
+                    }
                 }
                 if(first === null) {
                     first = +numbers.textContent;
@@ -237,7 +260,8 @@ function startOperationListeners() {
                 operate();
                 first = null;
                 operation.innerHTML = "&nbsp";
-                waitingForResult = true;
+                waitingForResult = true; //avoids concatenating result with numbers when pressing one after equal
+                equalJustPressed = true; //allows to operate on the result after pressing equal
                 break;
         }
     });

@@ -138,6 +138,14 @@ function startNumberListeners() {
                     numbers.textContent += "9";
                 }
                 break;
+            case "comma":
+                if(numbers.textContent === "0" || waitingForResult) {
+                    numbers.textContent = "0.";
+                    waitingForResult = false;
+                } else {
+                    numbers.textContent += ".";
+                }
+                break;
         }
     });
 }

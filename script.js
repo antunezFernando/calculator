@@ -257,7 +257,7 @@ function startFunctionalityListeners() {
                 waitingForResult = false;
                 break;
             case "backspace":
-                if(numbers.textContent.length > 1) {
+                if(numbers.textContent.length > 1 && !waitingForResult) {
                     numbers.textContent = numbers.textContent.slice(0, numbers.textContent.length - 1);
                 } else {
                     numbers.textContent = "0";

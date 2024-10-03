@@ -15,6 +15,8 @@ let eight = document.querySelector("#eight");
 let nine = document.querySelector("#nine");
 let comma = document.querySelector("#comma");
 
+let isTurnedOn = true;
+
 let first = null;
 let second = null;
 
@@ -55,10 +57,14 @@ function startListeners() {
     startNumberListeners();
     startOperationListeners();
     startFunctionalityListeners();
+    startOnOffListeners();
 }
 
 function startNumberListeners() {
     frame.addEventListener("click", (e) => {
+        if(!isTurnedOn) {
+            return;
+        }
         switch(e.target.id) {
             case "zero":
                 if(waitingForResult) {
@@ -153,6 +159,9 @@ function startNumberListeners() {
 
 function startOperationListeners() {
     frame.addEventListener("click", (e) => {
+        if(!isTurnedOn) {
+            return;
+        }
         switch(e.target.id) {
             case "add":
                 if(waitingForResult) {
@@ -235,6 +244,9 @@ function startOperationListeners() {
 
 function startFunctionalityListeners() {
     frame.addEventListener("click", (e) => {
+        if(!isTurnedOn) {
+            return;
+        }
         switch(e.target.id) {
             case "clear":
                 numbers.textContent = "0";
@@ -243,6 +255,28 @@ function startFunctionalityListeners() {
                 second = null;
                 waitingForResult = false;
                 break;
+            case "backspace":
+                if(numbers.textContent.length > 1) {
+                    numbers.textContent = numbers.textContent.slice(0, numbers.textContent.length - 1);
+                } else {
+                    numbers.textContent = "0";
+                }
+                break;
+        }
+    });
+}
+
+function startOnOffListeners() {
+    frame.addEventListener("click", (e) => {
+        if(e.target.id === "on-off") {
+            isTurnedOn = !isTurnedOn;
+            if(isTurnedOn == false) {
+                numbers.innerHTML = "&nbsp";
+                operation.innerHTML = "&nbsp";
+            } else {
+                numbers.textContent = "0";
+                operation.innerHTML = "&nbsp";
+            }
         }
     });
 }

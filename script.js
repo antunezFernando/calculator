@@ -35,6 +35,12 @@ function operate() {
             result = first * second;
             break;
         case "÷":
+            if(second === 0) {
+                numbers.textContent = "CACA";
+                first = 0;
+                second = null;
+                return;
+            }
             result = first / second;
             break;
         default:
@@ -140,6 +146,10 @@ function startOperationListeners() {
     frame.addEventListener("click", (e) => {
         switch(e.target.id) {
             case "add":
+                if(waitingForResult) {
+                    operation.textContent = "+";
+                    break;
+                }
                 if(first === null) {
                     first = +numbers.textContent;
                 } else {
@@ -152,6 +162,10 @@ function startOperationListeners() {
                 waitingForResult = true;
                 break;
             case "subtract":
+                if(waitingForResult) {
+                    operation.textContent = "-";
+                    break;
+                }
                 if(first === null) {
                     first = +numbers.textContent;
                 } else {
@@ -164,6 +178,10 @@ function startOperationListeners() {
                 waitingForResult = true;
                 break;
             case "multiply":
+                if(waitingForResult) {
+                    operation.textContent = "×";
+                    break;
+                }
                 if(first === null) {
                     first = +numbers.textContent;
                 } else {
@@ -176,6 +194,10 @@ function startOperationListeners() {
                 waitingForResult = true;
                 break;
             case "divide":
+                if(waitingForResult) {
+                    operation.textContent = "÷";
+                    break;
+                }
                 if(first === null) {
                     first = +numbers.textContent;
                 } else {
@@ -196,6 +218,7 @@ function startOperationListeners() {
                 operate();
                 first = null;
                 operation.innerHTML = "&nbsp";
+                waitingForResult = true;
                 break;
         }
     });

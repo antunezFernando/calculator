@@ -17,9 +17,10 @@ let comma = document.querySelector("#comma");
 
 let first = null;
 let second = null;
-let resultFlag = false;
 
-startListeners()
+let waitingForOperation = false;
+
+startListeners();
 
 function operate() {
     let result;
@@ -40,7 +41,6 @@ function operate() {
     numbers.textContent = result.toString();
     first = result;
     second = null;
-    resultFlag = true;
 }
 
 function startListeners() {
@@ -50,11 +50,6 @@ function startListeners() {
 
 function startNumberListeners() {
     frame.addEventListener("click", (e) => {
-        if(resultFlag) {
-            first = null;
-            numbers.textContent = "0";
-            resultFlag = false;
-        }
         switch(e.target.id) {
             case "zero":
                 if(numbers.textContent !== "0") {
@@ -62,64 +57,73 @@ function startNumberListeners() {
                 }
                 break;
             case "one":
-                if(numbers.textContent === "0") {
+                if(numbers.textContent === "0" || waitingForOperation) {
                     numbers.textContent = "1";
+                    waitingForOperation = false;
                 } else {
                     numbers.textContent += "1";
                 }
                 break;
             case "two":
-                if(numbers.textContent === "0") {
+                if(numbers.textContent === "0" || waitingForOperation) {
                     numbers.textContent = "2";
+                    waitingForOperation = false;
                 } else {
                     numbers.textContent += "2";
                 }
                 break;
             case "three":
-                if(numbers.textContent === "0") {
+                if(numbers.textContent === "0" || waitingForOperation) {
                     numbers.textContent = "3";
+                    waitingForOperation = false;
                 } else {
                     numbers.textContent += "3";
                 }
                 break;
             case "four":
-                if(numbers.textContent === "0") {
+                if(numbers.textContent === "0" || waitingForOperation) {
                     numbers.textContent = "4";
+                    waitingForOperation = false;
                 } else {
                     numbers.textContent += "4";
                 }
                 break;
             case "five":
-                if(numbers.textContent === "0") {
+                if(numbers.textContent === "0" || waitingForOperation) {
                     numbers.textContent = "5";
+                    waitingForOperation = false;
                 } else {
                     numbers.textContent += "5";
                 }
                 break;
             case "six":
-                if(numbers.textContent === "0") {
+                if(numbers.textContent === "0" || waitingForOperation) {
                     numbers.textContent = "6";
+                    waitingForOperation = false;
                 } else {
                     numbers.textContent += "6";
                 }
                 break;
             case "seven":
-                if(numbers.textContent === "0") {
+                if(numbers.textContent === "0" || waitingForOperation) {
                     numbers.textContent = "7";
+                    waitingForOperation = false;
                 } else {
                     numbers.textContent += "7";
                 }
                 break;
             case "eight":
-                if(numbers.textContent === "0") {
+                if(numbers.textContent === "0" || waitingForOperation) {
                     numbers.textContent = "8";
+                    waitingForOperation = false;
                 } else {
                     numbers.textContent += "8";
                 }
                 break;
             case "nine":
-                if(numbers.textContent === "0") {
+                if(numbers.textContent === "0" || waitingForOperation) {
                     numbers.textContent = "9";
+                    waitingForOperation = false;
                 } else {
                     numbers.textContent += "9";
                 }
@@ -132,40 +136,52 @@ function startOperationListeners() {
     frame.addEventListener("click", (e) => {
         switch(e.target.id) {
             case "add":
-                operation.textContent = "+";
                 if(first === null) {
                     first = +numbers.textContent;
                 } else {
                     second = +numbers.textContent;
                 }
-                numbers.textContent = "0";
+                if(first !== null && second !== null) {
+                    operate();
+                }
+                operation.textContent = "+";
+                waitingForOperation = true;
                 break;
             case "subtract":
-                operation.textContent = "-";
                 if(first === null) {
                     first = +numbers.textContent;
                 } else {
                     second = +numbers.textContent;
                 }
-                numbers.textContent = "0";
+                if(first !== null && second !== null) {
+                    operate();
+                }
+                operation.textContent = "-";
+                waitingForOperation = true;
                 break;
             case "multiply":
-                operation.textContent = "×";
                 if(first === null) {
                     first = +numbers.textContent;
                 } else {
                     second = +numbers.textContent;
                 }
-                numbers.textContent = "0";
+                if(first !== null && second !== null) {
+                    operate();
+                }
+                operation.textContent = "×";
+                waitingForOperation = true;
                 break;
             case "divide":
-                operation.textContent = "÷";
                 if(first === null) {
                     first = +numbers.textContent;
                 } else {
                     second = +numbers.textContent;
                 }
-                numbers.textContent = "0";
+                if(first !== null && second !== null) {
+                    operate();
+                }
+                operation.textContent = "÷";
+                waitingForOperation = true;
                 break;
             case "equal":
                 if(first === null) {
@@ -174,7 +190,8 @@ function startOperationListeners() {
                     second = +numbers.textContent;
                 }
                 operate();
-                operation.innerHTML = "&nbsp"
+                first = null;
+                operation.innerHTML = "&nbsp";
                 break;
         }
     });

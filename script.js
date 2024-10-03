@@ -283,7 +283,7 @@ function startOnOffListeners() {
 }
 
 function startKeyboardListeners() {
-    window.addEventListener("keypress", (e) => {
+    window.addEventListener("keydown", (e) => {
         if(!isTurnedOn) {
             return;
         }
@@ -335,6 +335,9 @@ function startKeyboardListeners() {
                 break;
             case "Enter":
                 document.querySelector("#equal").click();
+                break;
+            case "Backspace":
+                document.querySelector("#backspace").click();
                 break;
         }
     });

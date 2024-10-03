@@ -49,7 +49,6 @@ function operate() {
         default:
             result = first;
     }
-    // numbers.textContent = result.toString().length < 14 ? result.toString() : result.toExponential().toString();
     numbers.textContent = result.toString();
     first = result;
     second = null;
@@ -68,6 +67,16 @@ function startNumberListeners() {
         if(!isTurnedOn) {
             return;
         }
+
+        function handleOneToNine(number){
+            if(numbers.textContent === "0" || waitingForResult) {
+                numbers.textContent = number;
+                waitingForResult = false;
+            } else {
+                numbers.textContent += number;
+            }
+        }
+
         switch(e.target.id) {
             case "zero":
                 if(waitingForResult) {
@@ -78,76 +87,31 @@ function startNumberListeners() {
                 }
                 break;
             case "one":
-                if(numbers.textContent === "0" || waitingForResult) {
-                    numbers.textContent = "1";
-                    waitingForResult = false;
-                } else {
-                    numbers.textContent += "1";
-                }
+                handleOneToNine("1");
                 break;
             case "two":
-                if(numbers.textContent === "0" || waitingForResult) {
-                    numbers.textContent = "2";
-                    waitingForResult = false;
-                } else {
-                    numbers.textContent += "2";
-                }
+                handleOneToNine("2");
                 break;
             case "three":
-                if(numbers.textContent === "0" || waitingForResult) {
-                    numbers.textContent = "3";
-                    waitingForResult = false;
-                } else {
-                    numbers.textContent += "3";
-                }
+                handleOneToNine("3");
                 break;
             case "four":
-                if(numbers.textContent === "0" || waitingForResult) {
-                    numbers.textContent = "4";
-                    waitingForResult = false;
-                } else {
-                    numbers.textContent += "4";
-                }
+                handleOneToNine("4");
                 break;
             case "five":
-                if(numbers.textContent === "0" || waitingForResult) {
-                    numbers.textContent = "5";
-                    waitingForResult = false;
-                } else {
-                    numbers.textContent += "5";
-                }
+                handleOneToNine("5");
                 break;
             case "six":
-                if(numbers.textContent === "0" || waitingForResult) {
-                    numbers.textContent = "6";
-                    waitingForResult = false;
-                } else {
-                    numbers.textContent += "6";
-                }
+                handleOneToNine("6");
                 break;
             case "seven":
-                if(numbers.textContent === "0" || waitingForResult) {
-                    numbers.textContent = "7";
-                    waitingForResult = false;
-                } else {
-                    numbers.textContent += "7";
-                }
+                handleOneToNine("7");
                 break;
             case "eight":
-                if(numbers.textContent === "0" || waitingForResult) {
-                    numbers.textContent = "8";
-                    waitingForResult = false;
-                } else {
-                    numbers.textContent += "8";
-                }
+                handleOneToNine("8");
                 break;
             case "nine":
-                if(numbers.textContent === "0" || waitingForResult) {
-                    numbers.textContent = "9";
-                    waitingForResult = false;
-                } else {
-                    numbers.textContent += "9";
-                }
+                handleOneToNine("9");
                 break;
             case "comma":
                 if(numbers.textContent === "0" || waitingForResult) {
@@ -166,90 +130,41 @@ function startOperationListeners() {
         if(!isTurnedOn) {
             return;
         }
+
+        function handleOperation(sign) {
+            if(waitingForResult) {
+                if(equalJustPressed) {
+                    first = +numbers.textContent;
+                    equalJustPressed = false;
+                } else {
+                    operation.textContent = sign;
+                    return;
+                }
+            }
+            if(first === null) {
+                first = +numbers.textContent;
+            } else {
+                second = +numbers.textContent;
+            }
+            if(first !== null && second !== null) {
+                operate();
+            }
+            operation.textContent = sign;
+            waitingForResult = true;
+        }
+
         switch(e.target.id) {
             case "add":
-                if(waitingForResult) {
-                    if(equalJustPressed) {
-                        first = +numbers.textContent;
-                        equalJustPressed = false;
-                    } else {
-                        operation.textContent = "+";
-                        break;
-                    }
-                }
-                if(first === null) {
-                    first = +numbers.textContent;
-                } else {
-                    second = +numbers.textContent;
-                }
-                if(first !== null && second !== null) {
-                    operate();
-                }
-                operation.textContent = "+";
-                waitingForResult = true;
+                handleOperation("+");
                 break;
             case "subtract":
-                if(waitingForResult) {
-                    if(equalJustPressed) {
-                        first = +numbers.textContent;
-                        equalJustPressed = false;
-                    } else {
-                        operation.textContent = "-";
-                        break;
-                    }
-                }
-                if(first === null) {
-                    first = +numbers.textContent;
-                } else {
-                    second = +numbers.textContent;
-                }
-                if(first !== null && second !== null) {
-                    operate();
-                }
-                operation.textContent = "-";
-                waitingForResult = true;
+                handleOperation("-");
                 break;
             case "multiply":
-                if(waitingForResult) {
-                    if(equalJustPressed) {
-                        first = +numbers.textContent;
-                        equalJustPressed = false;
-                    } else {
-                        operation.textContent = "×";
-                        break;
-                    }
-                }
-                if(first === null) {
-                    first = +numbers.textContent;
-                } else {
-                    second = +numbers.textContent;
-                }
-                if(first !== null && second !== null) {
-                    operate();
-                }
-                operation.textContent = "×";
-                waitingForResult = true;
+                handleOperation("×");
                 break;
             case "divide":
-                if(waitingForResult) {
-                    if(equalJustPressed) {
-                        first = +numbers.textContent;
-                        equalJustPressed = false;
-                    } else {
-                        operation.textContent = "÷";
-                        break;
-                    }
-                }
-                if(first === null) {
-                    first = +numbers.textContent;
-                } else {
-                    second = +numbers.textContent;
-                }
-                if(first !== null && second !== null) {
-                    operate();
-                }
-                operation.textContent = "÷";
-                waitingForResult = true;
+                handleOperation("÷");
                 break;
             case "equal":
                 if(first === null) {

@@ -58,6 +58,7 @@ function startListeners() {
     startOperationListeners();
     startFunctionalityListeners();
     startOnOffListeners();
+    startKeyboardListeners();
 }
 
 function startNumberListeners() {
@@ -277,6 +278,64 @@ function startOnOffListeners() {
                 numbers.textContent = "0";
                 operation.innerHTML = "&nbsp";
             }
+        }
+    });
+}
+
+function startKeyboardListeners() {
+    window.addEventListener("keypress", (e) => {
+        if(!isTurnedOn) {
+            return;
+        }
+        switch(e.key) {
+            case "0":
+                zero.click();
+                break;
+            case "1":
+                one.click();
+                break;
+            case "2":
+                two.click();
+                break;
+            case "3":
+                three.click();
+                break;
+            case "4":
+                four.click();
+                break;
+            case "5":
+                five.click();
+                break;
+            case "6":
+                six.click();
+                break;
+            case "7":
+                seven.click();
+                break;
+            case "8":
+                eight.click();
+                break;
+            case "9":
+                nine.click();
+                break;
+            case ".":
+                comma.click();
+                break;
+            case "+":
+                document.querySelector("#add").click();
+                break;
+            case "-":
+                document.querySelector("#subtract").click();
+                break;
+            case "*":
+                document.querySelector("#multiply").click();
+                break;
+            case "/":
+                document.querySelector("#divide").click();
+                break;
+            case "Enter":
+                document.querySelector("#equal").click();
+                break;
         }
     });
 }

@@ -54,6 +54,7 @@ function operate() {
 function startListeners() {
     startNumberListeners();
     startOperationListeners();
+    startFunctionalityListeners();
 }
 
 function startNumberListeners() {
@@ -227,6 +228,20 @@ function startOperationListeners() {
                 first = null;
                 operation.innerHTML = "&nbsp";
                 waitingForResult = true;
+                break;
+        }
+    });
+}
+
+function startFunctionalityListeners() {
+    frame.addEventListener("click", (e) => {
+        switch(e.target.id) {
+            case "clear":
+                numbers.textContent = "0";
+                operation.innerHTML = "&nbsp";
+                first = null;
+                second = null;
+                waitingForResult = false;
                 break;
         }
     });

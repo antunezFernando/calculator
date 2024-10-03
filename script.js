@@ -37,6 +37,8 @@ function operate() {
         case "÷":
             result = first / second;
             break;
+        default:
+            result = first;
     }
     numbers.textContent = result.toString();
     first = result;

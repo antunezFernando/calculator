@@ -150,7 +150,7 @@ function startNumberListeners() {
                 if(numbers.textContent === "0" || waitingForResult) {
                     numbers.textContent = "0.";
                     waitingForResult = false;
-                } else {
+                } else if(numbers.textContent.indexOf(".") < 0) {
                     numbers.textContent += ".";
                 }
                 break;

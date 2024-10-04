@@ -49,6 +49,12 @@ function startListeners() {
         startFunctionalityListeners(e);
         startOnOffListeners(e);
     });
+    frame.addEventListener("mousedown", (e) => {
+        startMouseDownListeners(e);
+    });
+    frame.addEventListener("mouseup", (e) => {
+        startMouseUpListeners(e);
+    });
     window.addEventListener("keydown", (e) => {
         startKeyboardListeners(e);
     });
@@ -210,6 +216,32 @@ function startOnOffListeners(event) {
             numbers.textContent = "0";
             operation.innerHTML = "&nbsp";
         }
+    }
+}
+
+function startMouseDownListeners(event) {
+    switch(event.target.id) {
+        case "zero": case "comma": case "equal": case "add":
+        case "one": case "two": case "three": case "subtract":
+        case "four": case "five": case "six": case "multiply":
+        case "seven": case "eight": case "nine": case "divide":
+        case "on-off": case "clear": case "mystery": case "backspace":
+            document.querySelector(`#${event.target.id}`).classList.remove("normal-shadow");
+            document.querySelector(`#${event.target.id}`).classList.add("pressed-shadow");
+            break;
+    }
+}
+
+function startMouseUpListeners(event) {
+    switch(event.target.id) {
+        case "zero": case "comma": case "equal": case "add":
+        case "one": case "two": case "three": case "subtract":
+        case "four": case "five": case "six": case "multiply":
+        case "seven": case "eight": case "nine": case "divide":
+        case "on-off": case "clear": case "mystery": case "backspace":
+            document.querySelector(`#${event.target.id}`).classList.remove("pressed-shadow");
+            document.querySelector(`#${event.target.id}`).classList.add("normal-shadow");
+            break;
     }
 }
 

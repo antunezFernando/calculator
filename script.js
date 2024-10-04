@@ -270,5 +270,8 @@ function startKeyboardListeners(event) {
         case "Backspace":
             document.querySelector("#backspace").click();
             break;
+        case "Delete":
+            document.querySelector("#clear").click();
+            break;
     }
 }

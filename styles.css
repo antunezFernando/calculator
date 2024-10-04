@@ -9,6 +9,8 @@ body {
     justify-content: space-between;
     width: 100vw;
     height: 100vh;
+    background-image: url(./images/wood.jpg);
+    background-size: cover;
 }
 
 header {
@@ -17,6 +19,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: cadetblue;
 }
 
 #main-container {
@@ -32,6 +35,8 @@ header {
     flex-direction: column;
     padding: 20px;
     user-select: none;
+    background-color: gray;
+    box-shadow: black 8px 8px 10px 10px;
 }
 
 #screen {
@@ -42,6 +47,8 @@ header {
     flex-direction: column;
     padding: 5px;
     font-family: 'Calculator', sans-serif;
+    background-color: whitesmoke;
+    box-shadow: inset black 1px 1px 2px 2px;
 }
 
 #operation-input {
@@ -73,6 +80,8 @@ header {
     align-items: center;
     text-align: center;
     font-size: 40px;
+    background-color: white;
+    box-shadow: black 1px 1px 2px 2px;
 }
 
 footer {
@@ -81,6 +90,7 @@ footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: cadetblue;
 }
 
 a:any-link {

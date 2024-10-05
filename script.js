@@ -354,7 +354,7 @@ function setBackgroundImage() {
 
     url = getUrl();
     while (`url("${url}")` === document.querySelector("body").style.backgroundImage) {
-        rand = Math.floor(Math.random() * 6);
+        rand = Math.floor(Math.random() * 5);
         url = getUrl(rand);
     }
 

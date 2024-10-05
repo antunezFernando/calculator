@@ -328,7 +328,7 @@ function startKeyboardListeners(event) {
 function setBackgroundImage() {
     let url;
 
-    let rand = Math.floor(Math.random() * 6);
+    let rand = Math.floor(Math.random() * 5);
 
     function getUrl(number) {
         let ret;
@@ -337,18 +337,15 @@ function setBackgroundImage() {
                 ret = "./images/wood.jpg";
                 break;
             case 1:
-                ret = "./images/sand.jpg";
-                break;
-            case 2:
                 ret = "./images/dark-sand.jpg";
                 break;
-            case 3:
+            case 2:
                 ret = "./images/rain.jpg";
                 break;
-            case 4:
+            case 3:
                 ret = "./images/metal.jpg";
                 break;
-            case 5:
+            case 4:
                 ret = "./images/galaxy.jpg";
                 break;
         }

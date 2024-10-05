@@ -3,6 +3,14 @@ let frame = document.querySelector("#frame");
 let operation = document.querySelector("#operation-input");
 let numbers = document.querySelector("#number-input");
 
+let urlArray = [
+    "./images/wood.jpg",
+    "./images/dark-sand.jpg",
+    "./images/rain.jpg",
+    "./images/metal.jpg",
+    "./images/galaxy.jpg"
+];
+
 let first = null;
 let second = null;
 
@@ -326,36 +334,12 @@ function startKeyboardListeners(event) {
 }
 
 function setBackgroundImage() {
-    let url;
+    let rand = Math.floor(Math.random() * urlArray.length);
+    let url = urlArray[rand];
 
-    let rand = Math.floor(Math.random() * 5);
-
-    function getUrl(number) {
-        let ret;
-        switch (rand) {
-            case 0:
-                ret = "./images/wood.jpg";
-                break;
-            case 1:
-                ret = "./images/dark-sand.jpg";
-                break;
-            case 2:
-                ret = "./images/rain.jpg";
-                break;
-            case 3:
-                ret = "./images/metal.jpg";
-                break;
-            case 4:
-                ret = "./images/galaxy.jpg";
-                break;
-        }
-        return ret;
-    }
-
-    url = getUrl();
     while (`url("${url}")` === document.querySelector("body").style.backgroundImage) {
-        rand = Math.floor(Math.random() * 5);
-        url = getUrl(rand);
+        rand = Math.floor(Math.random() * urlArray.length);
+        url = urlArray[rand];
     }
 
     document.querySelector("body").style.backgroundImage = `url(${url})`;

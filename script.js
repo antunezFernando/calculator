@@ -10,6 +10,7 @@ let isTurnedOn = true;
 let waitingForResult = false;
 let equalJustPressed = false;
 
+setBackgroundImage();
 startListeners();
 
 function operate() {
@@ -204,7 +205,7 @@ function startFunctionalityListeners(event) {
             }
             break;
         case "mystery":
-            document.querySelector("body").style.backgroundImage = `url(${getBackgroundImage()})`;
+            setBackgroundImage();
             break;
     }
 
@@ -312,7 +313,7 @@ function startKeyboardListeners(event) {
     }
 }
 
-function getBackgroundImage() {
+function setBackgroundImage() {
     let url;
 
     let rand = Math.floor(Math.random() * 6);
@@ -348,5 +349,5 @@ function getBackgroundImage() {
         url = getUrl(rand);
     }
 
-    return url;
+    document.querySelector("body").style.backgroundImage = `url(${url})`;
 }

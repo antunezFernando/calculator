@@ -204,6 +204,7 @@ function startFunctionalityListeners(event) {
             }
             break;
         case "mystery":
+            document.querySelector("body").style.backgroundImage = `url(${getBackgroundImage()})`;
             break;
     }
 
@@ -309,4 +310,43 @@ function startKeyboardListeners(event) {
             document.querySelector("#clear").click();
             break;
     }
+}
+
+function getBackgroundImage() {
+    let url;
+
+    let rand = Math.floor(Math.random() * 6);
+
+    function getUrl(number) {
+        let ret;
+        switch(rand) {
+            case 0:
+                ret = "./images/wood.jpg";
+                break;
+            case 1:
+                ret = "./images/sand.jpg";
+                break;
+            case 2:
+                ret = "./images/dark-sand.jpg";
+                break;
+            case 3:
+                ret = "./images/rain.jpg";
+                break;
+            case 4:
+                ret = "./images/metal.jpg";
+                break;
+            case 5:
+                ret = "./images/galaxy.jpg";
+                break;
+        }
+        return ret;
+    }
+
+    url = getUrl();
+    while(`url("${url}")` === document.querySelector("body").style.backgroundImage) {
+        rand = Math.floor(Math.random() * 6);
+        url = getUrl(rand);
+    }
+
+    return url;
 }

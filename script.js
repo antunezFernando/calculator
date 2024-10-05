@@ -10,6 +10,10 @@ let isTurnedOn = true;
 let waitingForResult = false;
 let equalJustPressed = false;
 
+let showCreditsButton = document.querySelector("#credits-button");
+let credits = document.querySelector("#credits");
+let closeCreditsButton = document.getElementsByClassName("close")[0];
+
 setBackgroundImage();
 startListeners();
 
@@ -37,9 +41,9 @@ function operate() {
             result = first;
     }
     numbers.textContent = result.toString().length < 14 ? result.toString() :
-        result.toExponential().toString().length < 14 ? 
-        result.toExponential().toString() :
-        result.toString().slice(0, 13);
+        result.toExponential().toString().length < 14 ?
+            result.toExponential().toString() :
+            result.toString().slice(0, 13);
     first = +numbers.textContent;
     second = null;
 }
@@ -59,6 +63,12 @@ function startListeners() {
     });
     window.addEventListener("keydown", (e) => {
         startKeyboardListeners(e);
+    });
+    showCreditsButton.addEventListener("click", () => {
+        credits.style.display = "block";
+    });
+    closeCreditsButton.addEventListener("click", () => {
+        credits.style.display = "none";
     });
 }
 
@@ -125,7 +135,6 @@ function startNumberListeners(event) {
             }
             break;
     }
-
 }
 
 function startOperationListeners(event) {
@@ -181,7 +190,6 @@ function startOperationListeners(event) {
             equalJustPressed = true; //allows to operate on the result after pressing equal
             break;
     }
-
 }
 
 function startFunctionalityListeners(event) {
@@ -208,7 +216,6 @@ function startFunctionalityListeners(event) {
             setBackgroundImage();
             break;
     }
-
 }
 
 function startOnOffListeners(event) {
@@ -225,7 +232,7 @@ function startOnOffListeners(event) {
 }
 
 function startMouseDownListeners(event) {
-    switch(event.target.id) {
+    switch (event.target.id) {
         case "zero": case "comma": case "equal": case "add":
         case "one": case "two": case "three": case "subtract":
         case "four": case "five": case "six": case "multiply":
@@ -238,7 +245,7 @@ function startMouseDownListeners(event) {
 }
 
 function startMouseUpListeners(event) {
-    switch(event.target.id) {
+    switch (event.target.id) {
         case "zero": case "comma": case "equal": case "add":
         case "one": case "two": case "three": case "subtract":
         case "four": case "five": case "six": case "multiply":
@@ -320,7 +327,7 @@ function setBackgroundImage() {
 
     function getUrl(number) {
         let ret;
-        switch(rand) {
+        switch (rand) {
             case 0:
                 ret = "./images/wood.jpg";
                 break;
@@ -344,7 +351,7 @@ function setBackgroundImage() {
     }
 
     url = getUrl();
-    while(`url("${url}")` === document.querySelector("body").style.backgroundImage) {
+    while (`url("${url}")` === document.querySelector("body").style.backgroundImage) {
         rand = Math.floor(Math.random() * 6);
         url = getUrl(rand);
     }

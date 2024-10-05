@@ -70,6 +70,11 @@ function startListeners() {
     closeCreditsButton.addEventListener("click", () => {
         credits.style.display = "none";
     });
+    window.addEventListener("click", (e) => {
+        if(e.target === credits) {
+            credits.style.display = "none";
+        }
+    });
 }
 
 function startNumberListeners(event) {

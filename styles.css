@@ -118,9 +118,13 @@ footer {
     color: rgb(226, 199, 44);
 }
 
-a:any-link {
+.footer-link {
     text-decoration: none;
     color: crimson;
+}
+
+.footer-link:hover {
+    color: white;
 }
 
 .modal {
@@ -141,13 +145,16 @@ a:any-link {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 40px 20px 40px;
 }
 
-/* The Close Button */
 .close {
     color: #aaa;
-    float: right;
+    align-self: flex-end;
     font-size: 28px;
     font-weight: bold;
 }
@@ -157,4 +164,26 @@ a:any-link {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 25px;
+}
+
+.info h2 {
+    text-decoration: underline;
+}
+
+.modal-link {
+    text-decoration: none;
+    color: blue
+}
+
+.modal-link:hover {
+    color: white;
 }

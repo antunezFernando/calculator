@@ -26,6 +26,7 @@ function operate() {
             break;
         case "÷":
             if (second === 0) {
+                window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
                 document.querySelector("#clear").click();
                 return;
             }
@@ -201,6 +202,8 @@ function startFunctionalityListeners(event) {
             } else {
                 numbers.textContent = "0";
             }
+            break;
+        case "mystery":
             break;
     }
 

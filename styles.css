@@ -13,6 +13,12 @@ body {
     background-size: cover;
 }
 
+#title {
+    font-size: 70px;
+    color: rgb(226, 199, 44);
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
 header {
     height: 100px;
     width: auto;
@@ -79,7 +85,7 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: white;
+    background-color: rgb(199, 199, 199);
 }
 
 .normal-shadow {
@@ -107,8 +113,12 @@ footer {
     justify-content: space-around;
     align-items: center;
     background-color: cadetblue;
+    font-size: 30px;
+    font-family: 'Pixelify Sans', sans-serif;
+    color: rgb(226, 199, 44);
 }
 
 a:any-link {
     text-decoration: none;
+    color: crimson;
 }

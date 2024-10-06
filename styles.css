@@ -19,7 +19,7 @@ body {
 }
 
 header {
-    height: 100px;
+    height: 150px;
     width: auto;
     display: flex;
     justify-content: center;
@@ -28,12 +28,18 @@ header {
 }
 
 #main-container {
-    align-self: center;
+    display: flex;
+    justify-content: center;
 }
 
 #frame {
-    width: 600px;
-    height: 700px;
+    max-width: 600px;
+    max-height: 700px;
+    min-width: 360px;
+    min-height: 420px;
+    width: 60vw;
+    height: auto;
+    aspect-ratio: 6/7;
     border: 2px solid black;
     border-radius: 50px;
     display: flex;
@@ -194,13 +200,6 @@ footer {
 }
 
 @media screen and (max-width: 1000px) {
-    #frame {
-        max-width: 600px;
-        max-height: 700px;
-        width: 60vw;
-        height: 70vw;
-    }
-
     #number-input {
         font-size: 8.5vw;
     }
@@ -239,11 +238,6 @@ footer {
 @media screen and (max-width: 600px) {
     #title {
         font-size: 12vw;
-    }
-
-    #frame {
-        width: 360px;
-        height: 420px;
     }
 
     #number-input {
